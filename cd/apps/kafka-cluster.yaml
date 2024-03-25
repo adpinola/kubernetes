@@ -1,7 +1,14 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kafka
+---
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
   name: my-cluster
+  namespace: kafka
 spec:
   kafka:
     version: 3.7.0
@@ -38,3 +45,4 @@ spec:
   entityOperator:
     topicOperator: {}
     userOperator: {}
+---
