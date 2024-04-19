@@ -31,3 +31,4 @@ spec:
       }
     type: string
   type: k6/script
+  schedule: 0 * * * *
