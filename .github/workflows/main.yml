@@ -1,0 +1,16 @@
+name: TestKube
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  k6-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kubeshop/setup-testkube@v1
+        with:
+          organization: ${{ secrets.TkOrganization }}
+          environment: ${{ secrets.TkEnvironment }}
+          token: ${{ secrets.TkToken }}
+      - run: |
+          testkube run test k6-test -f
