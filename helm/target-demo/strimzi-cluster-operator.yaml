@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: strimzi-cluster-operator-target
+  namespace: flux-system
+spec:
+  targetNamespace: kafka
+  interval: 3m
+  timeout: 5m
+  chart:
+    spec:
+      chart: strimzi-kafka-operator
+      version: 0.40.0
+      sourceRef:
+        kind: HelmRepository
+        name: strimzi-helm
+      interval: 3m
+  releaseName: strimzi-cluster-operator
+  kubeConfig:
+    secretRef:
+      name: target-demo-kubeconfig
